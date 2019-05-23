@@ -154,7 +154,69 @@ const [name, handle, location] = user;
 console.log(name, handle, location); //"Timmy" "@T" "Stockholm"
 ```
 
+#### Glossary: function paremeters vs function arguments
+
+```js
+let foo = function(a, b) { /*...*/ } //a and b are parameters
+
+foo('c','d') //'c' and 'd' are function arguments
+```
+
+### Destructuring function arguments
+
+Useful when a function takes many arguments. Lets you ignore the order of arguments. 
+
+```js
+//Function with many arguments
+let foo = function(a,b,c,d) { /*...*/ }
+
+//Calling it requires setting all parameters in order
+foo('a','b','c','d');
+
+//Better destructured version
+let bar = function({ a, b, c, d }) { /*...*/ }
+bar({ a: 'a', b: 'b', c: 'c', d: 'd' }); //Argument order not important
+```
+
+#### Default values
+
+```js
+let baz = function({ a = 'a', b = 'b' }) { // Sets default values for a and b
+  console.log(a, b);
+}
+baz({ b: 'BBB' }); // 'a' (default), 'BBB' (passed)
+```
+
+#### Destructuring pattern for Promise.all
+
+```js
+function getUserData(user) {
+  return Promise.all([
+    getName(user),
+    getHandle(user),
+  ]).then(function(['name', 'handle']) {
+    return {
+      name: name,
+      handle: handle
+    }
+  })
+}
+```
+
+Shortened best-practices version of above:
+
+```js
+function getUserData(user) {
+  return Promise.all([
+    getName(user),
+    getHandle(user),
+  ]).then((['name', 'handle']) => (name, handle)
+}
+```
 
 # Reading list
 * https://developer.mozilla.org/en-US/docs/Glossary/Hoisting
 * https://hackernoon.com/execution-context-in-javascript-319dd72e8e2c
+
+# Useful links
+https://www.quora.com/What-is-the-difference-between-arguments-and-parameters-in-JavaScript
