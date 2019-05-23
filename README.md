@@ -3,8 +3,7 @@ Notes on the Modern Javascript Course by Tyler McGinnis
 
 # Table of contents
 
-* [Assigning variables, functions and properties](#assigning-variables-functions-and-properties)
-
+<!-- TOC -->autoauto- [Modern Javascript course notes](#modern-javascript-course-notes)auto- [Table of contents](#table-of-contents)auto- [Assigning variables, functions and properties](#assigning-variables-functions-and-properties)auto    - [Identifiers](#identifiers)auto    - [Variable declarations](#variable-declarations)auto        - [Variable initialization](#variable-initialization)auto        - [Scoping](#scoping)auto            - [Function scoping](#function-scoping)auto            - [Block scoping](#block-scoping)auto        - [Hoisting](#hoisting)auto        - [var vs let vs const](#var-vs-let-vs-const)auto            - [Rule of thumb](#rule-of-thumb)auto- [Object and Array destructuring](#object-and-array-destructuring)auto        - [Dot notation](#dot-notation)auto        - [Object literal notation](#object-literal-notation)auto        - [Destructuring](#destructuring)auto            - [Renaming properties during destructuring](#renaming-properties-during-destructuring)auto            - [Array destructuring](#array-destructuring)auto            - [Glossary: function paremeters vs function arguments](#glossary-function-paremeters-vs-function-arguments)auto        - [Destructuring function arguments](#destructuring-function-arguments)auto            - [Default values](#default-values)auto            - [Destructuring pattern for Promise.all](#destructuring-pattern-for-promiseall)auto- [Shorthand property and method names](#shorthand-property-and-method-names)auto        - [Shorthand property](#shorthand-property)auto        - [Shorthand method names](#shorthand-method-names)auto- [Computed property names](#computed-property-names)auto- [Template literals (template strings)](#template-literals-template-strings)auto    - [Multiline template strings](#multiline-template-strings)auto- [Reading list](#reading-list)auto- [Useful links](#useful-links)autoauto<!-- /TOC -->
 
 # Assigning variables, functions and properties
 
@@ -214,9 +213,99 @@ function getUserData(user) {
 }
 ```
 
+# Shorthand property and method names
+
+### Shorthand property
+
+If the property key of an object is the same as the value assigned to that property, you can omit the colon and value.
+
+```js
+function formatMessage(foo, bar) {
+  return {
+    foo: foo,
+    bar: bar
+  }
+}
+
+// Same as above
+function formatMessageNew(foo, bar) {
+  return {
+    foo,
+    bar
+  }
+}
+```
+
+### Shorthand method names
+
+A **function** that is the **property of an object** is called a **method**.
+
+```js
+function foo() {
+  return {
+    bar: function() {
+      /*...*/
+    }
+  }
+}
+
+// Same as above 
+function foo() {
+  return {
+    bar() {
+      /*...*/
+    }
+  }
+}
+```
+
+# Computed property names
+
+```js
+function objectify (key, value) {
+  let obj = {}
+  obj[key] = value
+  return obj;
+}
+
+// Same as above
+function objectify(key, value) {
+  return {
+    [key]: value
+  }
+}
+
+objectify('kitty', 27);
+```
+
+# Template literals (template strings)
+
+```js
+function welcomeMessage(firstName, lastName, email) {
+  return `Hello ${firstName} ${lastName}. Your email is ${email}`;
+}
+
+welcomeMessage('John', 'Doe', 'john@doe.com');
+```
+
+## Multiline template strings
+
+```js
+function welcomeMessage() {
+  return `
+          <span>
+            Nice to meet you!
+          </span>
+  `
+}
+welcomeMessage()
+```
+
+
 # Reading list
 * https://developer.mozilla.org/en-US/docs/Glossary/Hoisting
 * https://hackernoon.com/execution-context-in-javascript-319dd72e8e2c
+* http://2ality.com/2015/01/es6-destructuring.html
 
 # Useful links
 https://www.quora.com/What-is-the-difference-between-arguments-and-parameters-in-JavaScript
