@@ -3,7 +3,34 @@ Notes on the Modern Javascript Course by Tyler McGinnis
 
 # Table of contents
 
-<!-- TOC -->autoauto- [Modern Javascript course notes](#modern-javascript-course-notes)auto- [Table of contents](#table-of-contents)auto- [Assigning variables, functions and properties](#assigning-variables-functions-and-properties)auto    - [Identifiers](#identifiers)auto    - [Variable declarations](#variable-declarations)auto        - [Variable initialization](#variable-initialization)auto        - [Scoping](#scoping)auto            - [Function scoping](#function-scoping)auto            - [Block scoping](#block-scoping)auto        - [Hoisting](#hoisting)auto        - [var vs let vs const](#var-vs-let-vs-const)auto            - [Rule of thumb](#rule-of-thumb)auto- [Object and Array destructuring](#object-and-array-destructuring)auto        - [Dot notation](#dot-notation)auto        - [Object literal notation](#object-literal-notation)auto        - [Destructuring](#destructuring)auto            - [Renaming properties during destructuring](#renaming-properties-during-destructuring)auto            - [Array destructuring](#array-destructuring)auto            - [Glossary: function paremeters vs function arguments](#glossary-function-paremeters-vs-function-arguments)auto        - [Destructuring function arguments](#destructuring-function-arguments)auto            - [Default values](#default-values)auto            - [Destructuring pattern for Promise.all](#destructuring-pattern-for-promiseall)auto- [Shorthand property and method names](#shorthand-property-and-method-names)auto        - [Shorthand property](#shorthand-property)auto        - [Shorthand method names](#shorthand-method-names)auto- [Computed property names](#computed-property-names)auto- [Template literals (template strings)](#template-literals-template-strings)auto    - [Multiline template strings](#multiline-template-strings)auto- [Reading list](#reading-list)auto- [Useful links](#useful-links)autoauto<!-- /TOC -->
+<!-- vscode-markdown-toc -->
+* 1. [Identifiers](#Identifiers)
+* 2. [Variable declarations](#Variabledeclarations)
+	* 2.1. [Variable initialization](#Variableinitialization)
+	* 2.2. [Scoping](#Scoping)
+		* 2.2.1. [Function scoping](#Functionscoping)
+		* 2.2.2. [Block scoping](#Blockscoping)
+	* 2.3. [Hoisting](#Hoisting)
+	* 2.4. [var vs let vs const](#varvsletvsconst)
+		* 2.4.1. [Rule of thumb](#Ruleofthumb)
+	* 2.5. [Dot notation](#Dotnotation)
+	* 2.6. [Object literal notation](#Objectliteralnotation)
+	* 2.7. [Destructuring](#Destructuring)
+		* 2.7.1. [Renaming properties during destructuring](#Renamingpropertiesduringdestructuring)
+		* 2.7.2. [Array destructuring](#Arraydestructuring)
+		* 2.7.3. [Glossary: function paremeters vs function arguments](#Glossary:functionparemetersvsfunctionarguments)
+	* 2.8. [Destructuring function arguments](#Destructuringfunctionarguments)
+		* 2.8.1. [Default values](#Defaultvalues)
+		* 2.8.2. [Destructuring pattern for Promise.all](#DestructuringpatternforPromise.all)
+	* 2.9. [Shorthand property](#Shorthandproperty)
+	* 2.10. [Shorthand method names](#Shorthandmethodnames)
+* 3. [Multiline template strings](#Multilinetemplatestrings)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
 
 # Assigning variables, functions and properties
 
