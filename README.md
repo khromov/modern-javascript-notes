@@ -30,14 +30,7 @@ foo = 'bar';
 
 JavaScript is generally function scoped. Only functions introduce new scopes.
 
-Scoping can either be block-level or function-level. Only declarations are hoisted, not initializations.
-
-```js
-console.log(num); // undefined, because declaration was hoisted but not initialization
-var num; // declaration
-num = 6; // initialization
-```
-
+Scoping can either be block-level or function-level. 
 
 #### Function scoping
 
@@ -57,7 +50,22 @@ Everything between two `{ }` is a new block scope. e.g. `while`, `for`, `if`.
 
 ### Hoisting
 
-Variable declaration, function and variable declarations are hoisted to top of current  scope. 
+Variable and function declaration are hoisted to top of current scope. 
+Only variable declarations are hoisted, not initializations.
+
+```js
+console.log(num); // undefined, because declaration was hoisted but not initialization
+var num; // declaration
+num = 6; // initialization
+```
+
+```js
+catName("Tigger"); // "My cat's name is Tigger", because function declaration was hoisted to top.
+
+function catName(name) {
+  console.log("My cat's name is " + name);
+}
+```
 
 ### var vs let vs const
 
@@ -79,7 +87,6 @@ cat.name = 'Whiskers' = // OK, because we're modifying a property, not reassigni
 Always use `const`, unless variable might be reassigned later. In those cases use `let`. Never use `var`.
 
 
-
 # Reading list
-https://developer.mozilla.org/en-US/docs/Glossary/Hoisting
-https://hackernoon.com/execution-context-in-javascript-319dd72e8e2c
+* https://developer.mozilla.org/en-US/docs/Glossary/Hoisting
+* https://hackernoon.com/execution-context-in-javascript-319dd72e8e2c
