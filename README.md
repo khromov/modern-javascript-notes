@@ -7,7 +7,7 @@ Notes on the Modern Javascript Course by Tyler McGinnis
 
 Creating the variable
 
-```
+```js
 var foo;
 let bar;
 ```
@@ -16,7 +16,7 @@ let bar;
 
 Assigning the variable
 
-```
+```js
 foo = 'bar';
 ```
 
@@ -32,4 +32,15 @@ Variable declaration, assignments and X are hoisted to top of current function s
 
 * var - function scoped, undefined if used before assigned
 * let - block scoped, throws `ReferenceError` if used before assigned
-* const - block scoped, throws `ReferenceError` if used before assigned, can't be reassigned once created (properties of the object can still be reassigned)
+* const - block scoped, throws `ReferenceError` if used before assigned, can't be reassigned once created (properties of the variable can still be modified), ie:
+
+```js
+const cat = {
+  name: 'Fluffy'
+};
+
+cat = {}; // Uncaught TypeError: Assignment to constant variable
+
+cat.name = 'Whiskers' = // OK, because we're modifying a property, not reassigning object
+```
+
