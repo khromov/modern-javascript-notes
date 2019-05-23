@@ -1,6 +1,13 @@
 # Modern Javascript course notes
 Notes on the Modern Javascript Course by Tyler McGinnis
 
+# Table of contents
+
+* [Assigning variables, functions and properties](#assigning-variables-functions-and-properties)
+
+
+# Assigning variables, functions and properties
+
 ## Identifiers
 
 A name that identifies a variable, function, or property. 
@@ -85,6 +92,67 @@ cat.name = 'Whiskers' = // OK, because we're modifying a property, not reassigni
 
 #### Rule of thumb 
 Always use `const`, unless variable might be reassigned later. In those cases use `let`. Never use `var`.
+
+# Object and Array destructuring
+
+### Dot notation 
+
+Adds properties to object:
+
+```js
+const user = {};
+user.name = 'Timmy';
+console.log(user.name); //Timmy
+```
+
+### Object literal notation 
+
+Adds multiple properties when creating an object:
+
+```js
+const user = {
+  name: 'Timmy'
+}
+console.log(user.name); //Timmy
+```
+
+### Destructuring
+
+Allows us to extract multiple properties from an object or result of function invocation.
+
+```js
+const user = {
+  name: 'Timmy',
+  handle: '@T'
+}
+
+let { name, handle } = user;
+
+console.log(name); // "Timmy"
+console.log(handle); // "@T"
+```
+
+#### Renaming properties during destructuring
+
+```js
+const user = {
+  n: 'Timmy',
+  h: '@T',
+  l: 'Stockholm',
+}
+
+const { n: name, h: handle, l: location } = user; 
+console.log(name, handle, location); //"Timmy" "@T" "Stockholm" 
+```
+
+
+#### Array destructuring
+
+```js
+const user = ['Timmy', '@T', 'Stockholm'];
+const [name, handle, location] = user;
+console.log(name, handle, location); //"Timmy" "@T" "Stockholm"
+```
 
 
 # Reading list
