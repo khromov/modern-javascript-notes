@@ -31,6 +31,19 @@ Notes on the Modern Javascript Course by Tyler McGinnis
 - [Computed property names](#computed-property-names)
 - [Template literals (template strings)](#template-literals-template-strings)
   - [Multiline template strings](#multiline-template-strings)
+- [Arrow functions](#arrow-functions)
+  - [Implicit return](#implicit-return)
+  - [`this` keyword](#this-keyword)
+  - [Implicit returns with objects / multiple lines](#implicit-returns-with-objects--multiple-lines)
+      - [debugging implicit return](#debugging-implicit-return)
+- [Default parameters](#default-parameters)
+  - [Use function to validate default parameters](#use-function-to-validate-default-parameters)
+- [Compiling versus Polyfills with Babel](#compiling-versus-polyfills-with-babel)
+- [import, export and modules](#import-export-and-modules)
+  - [Import all exports](#import-all-exports)
+  - [Default exports](#default-exports)
+  - [Mixing default and named exports](#mixing-default-and-named-exports)
+- [async / await](#async--await)
 - [Reading list](#reading-list)
 - [Useful links](#useful-links)
 
@@ -329,6 +342,168 @@ function welcomeMessage() {
 }
 welcomeMessage()
 ```
+
+# Arrow functions
+
+* More terse, less typing
+* Implicit return (doesn't need `return` statement if written on same line)
+* `this` keyword TODO
+
+```js
+// Function expression
+const add =  function(x,y) {
+  return x + y;
+}
+
+//Same as above
+const addArrow = (x, y) => {
+  return x + y;
+}
+```
+
+## Implicit return
+
+```js
+const getTweets = (tweets) => tweets.response();
+
+// Same as above, works only if function has one parameter
+const getTweets = tweets => tweets.response();
+```
+
+## `this` keyword
+
+Arrow functions **do not create a new function context**. They share `this` from the parent scope.
+
+## Implicit returns with objects / multiple lines
+
+```js
+this.getUsers((users) => ({
+  users
+}))
+```
+
+#### debugging implicit return
+
+```js
+this.getUsers((users) => console.log(users) || ({
+  users
+}))
+```
+
+# Default parameters
+
+```js
+function foo(bar = 'baz') { /*...*/ }
+```
+
+## Use function to validate default parameters
+
+```js
+function isRequired(name) {
+  throw new Error(name + ' is required');
+}
+
+function calculatePayment(price = isRequired('price'), salesTax = 0.0047) {
+ // Math
+}
+
+calculatePayment(); // Uncaught Error: price is required 
+```
+
+# Compiling versus Polyfills with Babel
+
+Babel transforms the syntax of your code to transform it into compatible syntax for older browsers. It does not polyfill any features, like `Fetch` or `Promise`.
+
+Compiling doesn't add new properties to any primitives.
+
+# import, export and modules
+
+```js
+// math.js
+export function add (x,y) {
+  return x + y
+}
+export function multiply (x,y) {
+  return x * y
+}
+export function divide (x,y) {
+  return x / y
+}
+// main.js
+import { add, multiply } from './math'
+add(1,2) // 3
+multiply(3,4) // 12
+```
+
+## Import all exports
+
+```js
+// math.js (same as above)
+// main.js
+import * as math from './math'
+math.add(1,2) // 3
+math.multiply(3,4) // 12
+math.divide(4,4) // 1
+```
+
+## Default exports
+
+
+```js
+// math.js
+export default function doAllTheMath (x,y,z) {
+  return x + y + x * x * y * z / x / y / z
+}
+// main.js
+import doAllTheMath from './math'
+doAllTheMath(1,2,3) // 4
+```
+
+
+## Mixing default and named exports
+
+```js
+// math.js
+export function add (x,y) {
+  return x + y
+}
+export default function doAllTheMath (x,y,z) {
+  return x + y + x * x * y * z / x / y / z
+}
+// main.js
+import doAllTheMath, { add } from './math'
+doAllTheMath(1,2,3) // 4
+add(1,2) // 3
+```
+
+```js
+import { Route, Link, Router } from 'react-router';
+```
+
+# async / await
+
+Every async function you write will return a promise, and every single thing you await will ordinarily be a promise.
+
+```js
+function getUser () {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve({name: 'Tyler'}), 2000)
+  })
+}
+
+async function handleGetUser () {
+  try {
+    var user = await getUser()
+    console.log(user)
+  } catch (error) {
+    console.log('Error in handleGetUser', error)
+  }
+}
+```
+
+* https://learn.tylermcginnis.com/courses/51206/lectures/816838
+* https://medium.com/@bluepnume/learn-about-promises-before-you-start-using-async-await-eb148164a9c8
+* https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html
 
 
 # Reading list
